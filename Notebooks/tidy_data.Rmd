@@ -1,0 +1,159 @@
+---
+title: "Tidy Data"
+output: html_notebook
+---
+
+# Load Packages
+```{r}
+library(tidyverse)
+library(janitor) 
+library(babynames)
+```
+
+# Toy Data 
+```{r}
+cases <- tribble(
+  ~Country, ~"2011", ~"2012", ~"2013",
+  "FR",       7000,    6900,   7000,
+  "DE",       5800,    6000,   6200,
+  "US",       15000,   14000, 13000
+)
+
+pollution <- tribble(
+       ~city, ~size, ~amount,
+  "New York", "large",      23,
+  "New York", "small",      14,
+    "London", "large",      22,
+    "London", "small",      16,
+   "Beijing", "large",     121,
+   "Beijing", "small",     121
+)
+
+wide_fail <- tribble(
+  ~school, ~teacher,  ~subject,  ~average,
+    "UPC",        "A",        "MAT",     .90,
+    "UCC",        "B",        "MAT",     .99,
+    "UCC",        "A",        "ELA",     .92,
+    "UCC",        "B",        "ELA",     .91  
+)
+
+# To avoid a distracting detail during class
+data(who)
+who <- who %>% rename_all(~stringr::str_replace(., "newrel", "new_rel"))
+```
+
+
+
+
+
+# Tidy Data Example
+```{r}
+population
+```
+
+# Toy Data - Wide
+```{r}
+cases
+```
+
+
+# Your Turn
+Draw how the cases data set would look with three columns
+country, year, n
+
+
+```{r}
+cases
+```
+
+
+# Practice pivot_longer
+
+```{r}
+
+```
+
+
+# Toy Data - Long
+
+```{r}
+pollution
+```
+
+Work out pollution into thre collumns,
+city, large and small
+```{r}
+
+```
+
+
+# Your Turn - pivot_wider
+
+
+```{r}
+# data required for question
+ap_data <- read_excel("../data/DA_Immersion  Day_Exercise_1.xlsx", sheet = 1) %>%
+  clean_names() %>%
+  distinct() %>%
+  rename(student_id = student_number) # similar column names
+
+students <- read_excel("../data/DA_Immersion  Day_Exercise_1.xlsx", sheet = 3) %>%
+  clean_names()
+```
+
+Using the AP Input student scores, create a table of how many student received each score for each school, grade, and subject. 
+
+```{r}
+ap_data %>%
+  left_join(students) 
+```
+
+# Your Turn - untidy data (WHO)
+
+The data uses the original codes given by the World Health Organization. The column names for columns five through 60 are made by combining new_ to a code for method of diagnosis (rel = relapse, sn = negative pulmonary smear, sp = positive pulmonary smear, ep = extrapulmonary) to a code for gender (f = female, m = male) to a code for age group (014 = 0-14 yrs of age, 1524 = 15-24 years of age, 2534 = 25 to 34 years of age, 3544 = 35 to 44 years of age, 4554 = 45 to 54 years of age, 5564 = 55 to 64 years of age, 65 = 65 years of age or older).
+
+```{r}
+data(who)
+who
+```
+
+
+Use to `pivot_longer` on the 5th through 60th columns of `who` inorder to create columns named **codes** and **n**. Then select just the `county`, `year`, `codes` and `n` variables.
+
+```{r}
+pivot_longer(who, _________) %>%
+  select(-c(_______))
+```
+
+# Your Turn - sexage
+
+Separate the `sexage` column into **sex** and **age** columns.
+
+```{r}
+
+```
+
+# Your Turn - baby names
+
+Reshape the layout of this data. Calculate the percent of male (or female) children by year. Then plot the percent over time. (You can use excel or Tableau for the plot)
+
+```{r}
+babynames %>%
+  group_by(year, sex) %>% 
+  summarize(n = sum(n))
+```
+
+***
+
+
+# Take Aways
+
+Data comes in many formats but R prefers just one: _tidy data_.
+
+A data set is tidy if and only if:
+
+1. Every variable is in its own column
+2. Every observation is in its own row
+3. Every value is in its own cell (which follows from the above)
+
+What is a variable and an observation may depend on your immediate goal.

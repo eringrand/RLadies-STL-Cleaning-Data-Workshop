@@ -1,0 +1,72 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+## Set up
+```{r include = FALSE}
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
+
+
+## Set up Fake student data
+```{r include = FALSE}
+# Your fake data might be different from mine as it's totally random IDs.
+students <- tibble::tibble(student_id = round(runif(10, 1e6, 1e7-1), 0), 
+                           grade = round(runif(10, 1, 12)),
+                           yearsinuncommon = rep(1, 10),
+                           entrydate = Sys.Date() - 30,
+                           exitdate = Sys.Date())
+
+students[3, 1]  <- students[5, 1] 
+students[3, 2]  <- students[5, 2] - 1 # set up duplicate
+```
+
+```{r}
+students %>% get_dupes(student_id)
+```
+
+## Correcting Duplicates
+
+Version 1
+```{r}
+correct_students <- students %>%
+  mutate(grade = if_else(student_id == ______, CORRECT-GRADE, grade)) %>%
+  distinct() 
+
+correct_students
+
+get_dupes(correct_students, student_id)
+```
+
+Version 2
+```{r}
+correct_students <- students %>%
+   group_by(student_id) %>% 
+   summarize(grade = min(grade))
+
+correct_students
+
+get_dupes(correct_students, student_id)
+```
+
+Version 3
+```{r}
+get_dupes(students, student_id) %>%
+  write_csv("../data/dupes.csv", na = "")
+
+dupes_remove <- read_csv("../data/dupes_correct.csv") %>% # Create this file in excel
+  filter(del == 1)
+
+anti_join(students, dupes_remove) 
+```
+
+
+# Your Turn - data practice
+```{r}
+prac_sat <- read_csv("../data/exam.csv", na = "")
+```
+
+
