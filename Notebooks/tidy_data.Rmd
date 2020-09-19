@@ -80,33 +80,12 @@ cases
 pollution
 ```
 
-Work out pollution into thre collumns,
+Work out pollution into the collumns,
 city, large and small
 ```{r}
 
 ```
 
-
-# Your Turn - pivot_wider
-
-
-```{r}
-# data required for question
-ap_data <- read_excel("../data/DA_Immersion  Day_Exercise_1.xlsx", sheet = 1) %>%
-  clean_names() %>%
-  distinct() %>%
-  rename(student_id = student_number) # similar column names
-
-students <- read_excel("../data/DA_Immersion  Day_Exercise_1.xlsx", sheet = 3) %>%
-  clean_names()
-```
-
-Using the AP Input student scores, create a table of how many student received each score for each school, grade, and subject. 
-
-```{r}
-ap_data %>%
-  left_join(students) 
-```
 
 # Your Turn - untidy data (WHO)
 
