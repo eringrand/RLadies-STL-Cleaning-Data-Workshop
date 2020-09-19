@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "Janiore Notebook"
 output: html_notebook
 ---
 
@@ -68,5 +68,6 @@ anti_join(students, dupes_remove)
 ```{r}
 prac_sat <- read_csv("../data/exam.csv", na = "")
 ```
+
 
 
