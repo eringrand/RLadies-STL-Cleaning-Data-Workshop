@@ -1,6 +1,6 @@
 ---
-title: "Janiore Notebook"
-output: html_notebook
+title: "Janitor Notebook"
+output: html_document
 ---
 
 ## Set up

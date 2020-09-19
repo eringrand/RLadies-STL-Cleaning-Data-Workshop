@@ -1,6 +1,6 @@
 ---
-title: "Tidy Data"
-output: html_notebook
+title: "Tidyr"
+output: html_document
 ---
 
 # Load Packages
