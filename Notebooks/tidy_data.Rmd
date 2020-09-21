@@ -80,7 +80,7 @@ cases
 pollution
 ```
 
-Work out pollution into the collumns,
+Work out pollution into the columns,
 city, large and small
 ```{r}
 
