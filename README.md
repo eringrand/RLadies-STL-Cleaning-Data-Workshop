@@ -1,5 +1,5 @@
-# RLadies-STL-Cleaning-Data-Workshop
-Cleaning messy data with janitor and tidyr.
+# RLadiesSTL Cleaning Messy Data Workshop
+Cleaning messy data with _janitor_ and _tidyr_.
 
 
 ### Required tools:
@@ -9,3 +9,6 @@ Cleaning messy data with janitor and tidyr.
 ### Required packages:
 - tidyverse
 - janitor
+
+
+Please download the full folder so that you have access to the Data and Notebooks you will need in the workshop.
