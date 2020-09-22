@@ -70,4 +70,3 @@ prac_sat <- read_csv("../data/exam.csv", na = "")
 ```
 
 
-
