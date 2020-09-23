@@ -69,4 +69,12 @@ anti_join(students, dupes_remove)
 prac_sat <- read_csv("../data/exam.csv", na = "")
 ```
 
+```{r}
+prac_sat %>%
+  group_by(student_number, subject) %>%
+  mutate(percent_correct = max(percent_correct)) %>%
+  ungroup() %>%
+  distinct() %>%
+  get_dupes(student_number, subject)
+```
 

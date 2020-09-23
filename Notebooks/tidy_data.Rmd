@@ -91,7 +91,7 @@ city, large and small
 
 # Your Turn - baby names
 
-Reshape the layout of this data. Calculate the percent of male (or female) children by year. Then plot the percent over time. (You can use excel or Tableau for the plot)
+Reshape the layout of this data. Calculate the ratio of male to female children by year. 
 
 ```{r}
 babynames %>%
